@@ -1,0 +1,33 @@
+template(name='folderTreeModal')
+  .modal.fade#folderTreeModal(tabindex='-1',role='dialog',aria-labelledby='folderTreeModalLabel',aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button(type='button',class='close',data-dismiss='modal',aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title#folderTreeModalLabel Folder Structure
+        .modal-body
+          .row
+            .col-md-12
+              +with RootFolder
+                a.zone-root-node(href='#',data-id='#{_id}')
+                  i.entypo-globe
+                  | #{name}
+              ul#tree1
+                each children
+                  li
+                    a.zone-folder-tree-node(href='#',data-id='#{_id}') #{name}
+                    +folder_children children=children
+        .modal-footer
+          button.btn.btn-default(type='button',data-dismiss='modal') Close
+          button.btn.btn-primary#btn_copy_to(type='button',data-dismiss='modal') Copy
+
+
+template(name='folder_children')
+  if children
+    ul
+      each children
+        li
+          a.zone-folder-tree-node(href='#',data-id='#{_id}') #{name}
+          if children 
+            +folder_children

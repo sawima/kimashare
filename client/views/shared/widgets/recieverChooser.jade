@@ -1,0 +1,5 @@
+template(name='recieverChooser')
+  select.form-control.chosen-select(data-placeholder='Add Receiver',multiple,id='#{id}',size='#{size}')
+    each shareReceivers
+      option(value="{{_id}}") {{email}}
+

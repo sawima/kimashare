@@ -1,0 +1,126 @@
+template(name='privateZone')
+  .content-toolbar-container
+    .row
+      .col-md-12
+        #folder_full_path.col-md-6 
+          if currentPath
+            each currentPath
+              if _id
+                a.folder_path_link(href='#') #{name}
+                i.entypo-right-open
+              else 
+                span #{name}
+                i.entypo-right-open
+          span.current-folder-name #{currentName}
+        .col-md-6.folder-box-toolbar
+          .col-sm-4.col-no-glue
+            a(href='#',data-modallink='modal',data-target='#jqueryUploaderModal',data-toggle="tooltip",data-placement="bottom",title='Upload New Files')
+              i.entypo-upload
+            a(href='#',data-modallink='modal',data-target='#newFolderModal',data-toggle="tooltip",data-placement="bottom",title='New Folder')
+              i.entypo-list-add
+            //- a#share_current_folder(href='#',data-toggle="tooltip",data-placement="bottom",title='Share Current Folder')
+            //-   i.entypo-share
+            a#show_deleted(href='#',data-toggle="tooltip",data-placement="bottom",title='Show Deleted')
+              i.entypo-trash
+            a#show_activities(href='{{pathFor "activitiesBoard" czoneid=czone._id}}',data-toggle="tooltip",data-placement="bottom",title='Show Activities')
+              i.entypo-info-circled
+         
+          .search-container.col-sm-8.col-no-glue
+            .input-group
+              input.form-control#txt_search_box.typeahead(type='text',data-min-length='0',autocomplete='off',spellcheck='off',data-source='filenames',name='filename',placeholder='Search...')
+              span.input-group-btn
+                button.btn.btn-default#btn_files_search(type='button') 
+                  i.entypo-search
+    if selected_target_ids
+      .row.selected_operation_bar
+        .col-md-12
+          a.btn.operation_file_download(href='#')
+            | Download
+            i.entypo-download
+          a.btn.operation_file_remove(href='#')
+            | Remove
+            i.entypo-trash
+          a.btn.operation_file_share(href='#')
+            | Share
+            i.entypo-share
+          span.dropdown
+            a.btn(id='opmorelabel',data-toggle='dropdown',data-target='#',role='button',aria-haspopup='true',aria-expanded='false')
+              | More 
+              i.entypo-dot-3
+            ul.dropdown-menu(aria-labelledby='opmorelabel')
+              //- unless mutipleSelected
+              //-   li
+              //-     a.operation_file_rename(href='#')
+              //-       | Rename
+              li
+                a#btn_move_files(href='#',data-target='#folderTreeModal',title='Move To...')
+                  | Move
+              li
+                a#btn_copy_files(href='#',data-target='#folderTreeModal',title='Copy To...')
+                  | Copy
+          //- if isKeyUser
+          //-   a.btn.copy_to_other_zone(href='#')
+          //-     | Cross Sites Sharing
+          //-     i.entypo-export
+    if selected_removed_id
+      .row.selected_operation_bar
+        .col-md-12
+          a.btn.operation_removed_file_restore(href='#')
+            | Restore 
+            i.entypo-ccw
+          if isKeyUser
+            a.btn.operation_removed_file_permanetly_remove(href='#')
+              | Permanetly Remove
+              i.entypo-cancel-squared
+      
+  .scroll-content-container        
+    table.table.table-hover#kima_files_table
+      thead
+        tr
+          th Name
+          th Modified
+          th Size
+          th Type
+          th 
+      tbody
+        if currentPath
+          tr.go_upper_folder
+            td(colspan='5')
+              a(href='#').upper_folder_link 
+                i.entypo-level-up
+                | ..
+        each subItems
+          if isRemoved
+            tr.removed_file(data-id='#{_id}')
+              td
+                if isDir
+                  a.file_name_link(href='#',data-filename='#{name}',data-id='#{_id}',data-url='#{url}',title='#{description}')
+                    i.entypo-folder
+                    | {{toolong_filename name 50}}
+                else
+                  a.file_name_link(href='#',data-filename='#{name}',data-id='#{_id}',data-url='#{url}',title='#{name}')
+                    i(class='{{iconForFileType type}}')
+                    | {{toolong_filename name 50}}
+              td {{format_folder_time updatedAt}}
+              td {{format_size size}}
+              td #{type}
+              td Deleted
+          else
+            tr(data-id='#{_id}')
+              td
+                if isDir
+                  a.file_name_link(href='#',data-filename='#{name}',data-id='#{_id}',data-url='#{url}',title='#{description}')
+                    i.entypo-folder
+                    | {{toolong_filename name 50}}
+                else
+                  a.file_name_link(href='#',data-filename='#{name}',data-id='#{_id}',data-url='#{url}',title='#{name}')
+                    i(class='{{iconForFileType type}}')
+                    | {{toolong_filename name 50}}
+              td {{format_folder_time updatedAt}}
+              td {{format_size size}}
+              td #{type}
+              td
+  +newFolderModal
+  +jqueryUploaderFilesModal myformData=myformData
+  +fileShareModal shareReceivers=shareReceivers
+  +folderTreeModal children=czoneChildFolders RootFolder=czoneRootFolder

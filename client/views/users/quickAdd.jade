@@ -1,0 +1,24 @@
+template(name='quickAddUser')
+  .panel.panel-success
+    .panel-heading
+      h3.panel-title New User
+    .panel-body
+      form#customer_quick_form
+        .form-group
+          input.form-control(id='customer_name',placeholder='Full Name')
+        .form-group
+          input.form-control(id='customer_email',placeholder='Email')
+        //- .form-group
+        //-   input.form-control(id='customer_password',placeholder='Password')
+        .form-group
+          input.form-control(id='customer_phone',placeholder='Phone')
+        .form-group
+          input.form-control(id='customer_company',placeholder='Company')
+        .form-group
+          select.form-control#select_roles(multiple)
+            option(value='external') External
+            option(value='internal') Internal
+            //- option(value='useradmin') User Administrator
+            //- option(value='fileadmin') File Administrator
+            option(value='systemadmin') Administrator
+        button.btn.btn-default Create

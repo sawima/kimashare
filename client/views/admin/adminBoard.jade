@@ -1,0 +1,31 @@
+template(name='adminBoard')
+  .container-fluid
+    .headline 
+      h4 Collaboration Site
+    .row
+      .col-md-2
+        .admin-block.admin-block-white
+          i.icon-custom.icon-color-blue.rounded-x.fa.fa-connectdevelop
+          div
+            a(href='{{pathFor "newCZone"}}') New Site
+      .col-md-2
+        .admin-block.admin-block-white
+          i.icon-custom.icon-color-blue.rounded-x.fa.fa-bullseye
+          div
+            a(href='{{pathFor "CZoneAdmin"}}') Sites
+    .headline 
+      h4 Users Management
+    .row
+      .col-md-2
+        .admin-block.admin-block-white
+          i.icon-custom.icon-color-sea.rounded-x.fa.fa-user-plus
+          div
+            a(href='{{pathFor "quickAddUser"}}') New User
+      .col-md-2
+        .admin-block.admin-block-white
+          i.icon-custom.icon-color-sea.rounded-x.fa.fa-table
+          div
+            a(href='{{pathFor "useradmin"}}') Users Table
+
+  
+

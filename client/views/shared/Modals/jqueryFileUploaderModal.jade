@@ -1,0 +1,15 @@
+template(name='jqueryUploaderFilesModal')
+  .modal.fade#jqueryUploaderModal(tabindex='-2',role='dialog',aria-labelledby='newFilesModalLabel',aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button(type='button',class='close',data-dismiss='modal',aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title#newFilesModalLabel Upload Files
+        .modal-body
+          .row
+            .col-md-12
+              | #{myformData.directoryName}
+              +upload_bootstrap multiple=true formData=myformData 
+        .modal-footer
+          button.btn.btn-default(type='button',data-dismiss='modal') Close

@@ -1,0 +1,20 @@
+template(name='searchResult')
+  .container
+    .row
+      h2 Search Result
+    .row
+      .col-md-8
+        .input-group
+          input.form-control#txt_search_box.typeahead(type='text',data-min-length='0',autocomplete='off',spellcheck='off',data-source='filenames',name='filename',placeholder='Search...')
+          span.input-group-btn
+            button.btn.btn-default#btn_files_search(type='button') 
+              i.entypo-search
+    .row
+      .col-md-8.padding-top-10
+        ul
+          each fileslist
+            li
+              a.search_result_file(href='#')
+                | #{name}
+
+

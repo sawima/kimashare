@@ -1,0 +1,45 @@
+template(name="editUser")
+  h3 User Info
+  .form-horizontal
+    .form-group
+      label.col-sm-2.control-label(for='customer_fullname') Full Name
+      .col-sm-10
+        input.form-control#customer_fullname(type='text',placeholder='Full Name',value="#{profile.fullname}")
+    .form-group
+      label.col-sm-2.control-label(form='customer_email') Email
+      .col-sm-10
+        input.form-control#customer_email(type='text',placeholder='Email',value="#{email}")
+    .form-group
+      label.col-sm-2.control-label(form='customer_phone') Work Phone
+      .col-sm-10
+        input.form-control#customer_phone(type='text',placeholder='Work Phone',value="#{profile.phone}")
+    .form-group
+      label.col-sm-2.control-label(form='customer_company') Company
+      .col-sm-10
+        input.form-control#customer_company(type='text',placeholder='Company',value="#{profile.company}")
+    .form-group
+      label.col-sm-2.control-label(form='customer_Role') Roles
+      .col-sm-10
+        select.form-control#customer_Role(multiple)
+          option(value='external') External
+          option(value='internal') Internal
+          //- option(value='useradmin') User Administrator
+          //- option(value='fileadmin') File Administrator
+          option(value='systemadmin') Administrator
+    //- .form-group
+    //-   label.col-sm-2.control-label(form='customer_active') Active
+    //-   .col-sm-10
+    //-     input#customer_active(type='checkbox',checked='#{profile.active}')
+    .form-group
+      .col-sm-3.col-sm-offset-9
+        button#btn_updateUserInfo.btn.btn-primary Update
+        button.btn.btn-danger(type='button',data-toggle='modal',data-target='#exampleModal') Delete
+  
+  .modal.fade#exampleModal(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-body
+          h3 Are you sure to permanently delete this User?
+        .modal-footer
+          button.btn.btn-primary#btn_deleteUser(type='button',data-dismiss='modal',data-id='#{_id}') Yes
+          button.btn(type='button',data-dismiss='modal') Cancel

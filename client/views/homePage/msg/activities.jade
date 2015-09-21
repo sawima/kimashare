@@ -1,0 +1,21 @@
+template(name='activitiesBoard')
+  .col-md-12.padding-top-10 
+    .col-md-offset-2.col-md-8
+      .panel.panel-orange
+        .panel-heading
+          .panel-title
+            i.entypo-info-circled
+            |  Activities
+        .panel-body
+          ul.list-unstyled.notify-msg-items
+            each allMsg
+              li
+                span.notify-msg-title
+                  i(class='{{activityIcon action}}')
+                  strong #{operator.fullname}
+                  | - {{calendar_time happendAt}}
+                span.msg-description #{action} file 
+                a(href='#')
+                  | #{file.name}
+          if hasMore
+            a.btn.btn-default.col-md-4.load-more-msg(href='#') More ...

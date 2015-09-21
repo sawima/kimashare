@@ -1,0 +1,34 @@
+template(name='publicHome')
+  div.my-Board-Container
+    .col-md-12
+      .col-md-6
+        .row
+          .col-md-12
+            .panel.panel-default-dark
+              .panel-heading
+                .panel-title
+                  i.entypo-feather
+                  |  Introduction
+                //- span.pull-right.panel-collapse-clickable
+                //-   i.entypo-down-open
+              .panel-body
+                h4 Welcome to File Share Portal
+                p
+                  | File Share Portal provide easy and secure access to unofficial documentations with Customers,Partners and other Associates.
+                  //- a(href='#') manual
+                //- p how to , system guide 
+                //- p support link 
+                //-   a(href='#') support@xxx.com
+      .col-md-6
+        .row
+          .col-md-12
+            .panel.panel-sea
+              .panel-heading
+                .panel-title
+                  i.entypo-bell
+                  |  Sign In
+                //- span.pull-right.panel-collapse-clickable
+                //-   i.entypo-down-open
+              .panel-body
+                +atForm state='signIn'
+  

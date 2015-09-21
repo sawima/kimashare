@@ -1,0 +1,12 @@
+template(name='collaborationZoneAdmin')
+  .pad-container
+    h2 Collaboration Site
+    a.btn.btn-primary(href="{{pathFor 'newCZone'}}",title='New Collaboration Site') 
+      i.entypo-plus-cirled
+      |New Site
+    .row
+      .col-md-12
+        +tabular table=TabularTables.CZones class="table table-striped table-bordered table-condensed"
+
+template(name='CZoneCtlCell')
+  a.btn.btn-xs.btn-info(href='{{pathFor "viewCZone" czone_id=this._id}}') Detail

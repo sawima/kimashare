@@ -1,0 +1,57 @@
+template(name='newCollaborationZone')
+  .pad-container
+    if current_edit_id
+      h2 Edit Collaboration Site
+    else
+      h2 New Collaboration Site
+    .panel.panel-default
+      .panel-heading
+        if current_edit_id
+          .panel-title Edit Site
+        else
+          .panel-title New Site
+      .panel-body
+        .form-horizontal.form-groups-bordered
+          .form-group
+            label.col-sm-3.control-label(for='czone_name') Name
+            .col-sm-6
+              input#czone_name.form-control(placeholder='Name')
+          .form-group
+            label.col-sm-3.control-label Description 
+            .col-sm-6
+              textarea.form-control#czone_description(rows='4',placeholder='Description')
+          .form-group
+            .col-md-6.col-md-offset-3
+              label
+                input#openToAll(type='checkbox')
+                | Opened to everyone
+          .form-group
+            .col-sm-4
+              .tile-block.tile-cyan
+                .tile-header Consumers
+                .tile-content
+                  +inputAutocomplete settings=selectUserSettings class='form-control' id='newCustomerTxtForZone' placeholder='Add Consumer'
+                  .margin-top-10
+                    ul.list-unstyled#customersOfCZone 
+            .col-sm-4
+              .tile-block.tile-blue
+                .tile-header Contributors
+                .tile-content
+                  +inputAutocomplete settings=selectUserSettings class='form-control' id='newInternalTxtForZone' placeholder='Add Contributor'
+                  .margin-top-10
+                    ul.list-unstyled#internalsOfCZone 
+            .col-sm-4
+              .tile-block.tile-brown
+                .tile-header Coordinators
+                .tile-content
+                  +inputAutocomplete settings=selectUserSettings class='form-control' id='newAdminTxtForZone' placeholder='Add Coordinator'
+                  .margin-top-10
+                    ul.list-unstyled#keyuserOfCZone
+          .form-group
+            .col-sm-offset-3.col-sm-6
+                button.btn.btn-primary#saveNewCZone Save
+                button.btn.btn-default#back_to_view_czone Back
+
+template(name='customerPopup')
+  span.label(style="color:#781a1a") #{profile.fullname} 
+  | {{emails.[0].address}} #{profile.company}

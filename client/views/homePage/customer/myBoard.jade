@@ -1,0 +1,64 @@
+template(name='customerBoard')
+  div.my-Board-Container
+    .col-md-12
+      .col-md-6
+        .row
+          .col-md-12
+            .panel.panel-u
+              .panel-heading
+                .panel-title
+                  i.entypo-map
+                  |  Public Sites
+                span.pull-right.panel-collapse-clickable
+                  i.entypo-down-open
+              .panel-body
+                p
+                  | You can view and download files in following sites
+                ul.list-unstyled
+                  each publicZones
+                    li
+                      a(href='{{pathFor "publicczone" zoneid=this._id}}') #{name}
+        .row
+          .col-md-12
+            .panel.panel-brown
+              .panel-heading
+                .panel-title
+                  i.entypo-network
+                  |  My Sites
+                span.pull-right.panel-collapse-clickable
+                  i.entypo-down-open
+              .panel-body
+                p
+                  | You can edit content in following sites
+                ul.list-unstyled
+                  each myZones
+                    li
+                      a(href='{{pathFor "privateczone" zoneid=this._id}}') #{name}
+      .col-md-6
+        .row
+          .col-md-12
+            .panel.panel-orange
+              .panel-heading
+                .panel-title
+                  i.entypo-mail
+                  |  Notification Messages
+                span.pull-right.panel-collapse-clickable
+                  i.entypo-down-open
+              .panel-body
+                ul.list-unstyled.notify-msg-items
+                  each notifymsg
+                    li
+                      span.notify-msg-title
+                        strong #{author.fullname}
+                        | - {{calendar_time createdAt}}
+                      if description
+                        span.msg-description !{description}
+                      ul.list-unstyled.notify-msg-file-list
+                        each files
+                          li
+                            if isDir
+                              i.fa.fa-folder
+                            else
+                              i.fa.fa-file
+                            a.msg-file-link(href='#') #{name}
+                a(href='{{pathFor "allNotificationMsg"}}') All Messages

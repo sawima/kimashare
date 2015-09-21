@@ -1,0 +1,27 @@
+template(name='allNotificationMsg')
+  .col-md-12.padding-top-10
+    .col-md-offset-2.col-md-8
+      .panel.panel-orange
+        .panel-heading
+          .panel-title
+            i.entypo-mail
+            |  Notification Messages
+        .panel-body
+          ul.list-unstyled.notify-msg-items
+            each allMsg
+              li
+                span.notify-msg-title
+                  strong #{author.fullname}
+                  | - {{calendar_time createdAt}}
+                if description
+                  span.msg-description !{description}
+                ul.list-unstyled.notify-msg-file-list
+                  each files
+                    li
+                      if isDir
+                        i.fa.fa-folder
+                      else
+                        i.fa.fa-file
+                      a.msg-file-link(href='#') #{name}
+          if hasMore
+            a.btn.btn-default.col-md-4.load-more-msg(href='#') More ...

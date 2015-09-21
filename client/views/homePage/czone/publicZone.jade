@@ -1,0 +1,74 @@
+template(name='publicZone')
+  .content-toolbar-container
+    .row
+      .col-md-12
+        #folder_full_path.col-md-6 
+          if currentPath
+            each currentPath
+              if _id
+                a.folder_path_link(href='#') #{name}
+                i.entypo-right-open
+              else 
+                span #{name}
+                i.entypo-right-open
+          span.current-folder-name #{currentName}
+        .col-md-6.folder-box-toolbar
+          .search-container
+            .input-group
+              input.form-control#txt_search_box.typeahead(type='text',data-min-length='0',autocomplete='off',spellcheck='off',data-source='filenames',name='filename',placeholder='Search...')
+              span.input-group-btn
+                button.btn.btn-default#btn_files_search(type='button') 
+                  i.entypo-search
+    if selected_target_ids
+      .row.selected_operation_bar
+        .col-md-12
+          a.btn.operation_file_download(href='#')
+            | Download
+            i.entypo-download 
+  .scroll-content-container        
+    table.table.table-hover#kima_files_table
+      thead
+        tr
+          th Name
+          th Modified
+          th Size
+          th Type
+          th 
+      tbody
+        if currentPath
+          tr.go_upper_folder
+            td(colspan='5')
+              a(href='#').upper_folder_link 
+                i.entypo-level-up
+                | ..
+        each subItems
+          if isRemoved
+            tr.removed_file(data-id='#{_id}')
+              td
+                if isDir
+                  a.file_name_link(href='#',data-filename='#{name}',data-id='#{_id}',data-url='#{url}',title='#{description}')
+                    i.entypo-folder
+                    | {{toolong_filename name 50}}
+                else
+                  a.file_name_link(href='{{this.url}}',data-filename='#{name}',data-id='#{_id}',data-url='#{url}',title='#{name}')
+                    i(class='{{iconForFileType type}}')
+                    | {{toolong_filename name 50}}
+              td {{format_folder_time updatedAt}}
+              td {{format_size size}}
+              td #{type}
+              td Deleted
+          else
+            tr(data-id='#{_id}')
+              td
+                if isDir
+                  a.file_name_link(href='#',data-filename='#{name}',data-id='#{_id}',data-url='#{url}',title='#{description}')
+                    i.entypo-folder
+                    | {{toolong_filename name 50}}
+                else
+                  a.file_name_link(href='{{this.url}}',data-filename='#{name}',data-id='#{_id}',data-url='#{url}',title='#{name}')
+                    i(class='{{iconForFileType type}}')
+                    | {{toolong_filename name 50}}
+              td {{format_folder_time updatedAt}}
+              td {{format_size size}}
+              td #{type}
+              td 

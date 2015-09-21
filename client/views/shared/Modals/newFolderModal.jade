@@ -1,0 +1,22 @@
+template(name='newFolderModal')
+  .modal.fade#newFolderModal(tabindex='-1',role='dialog',aria-labelledby='newFolderModalLabel',aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button(type='button',class='close',data-dismiss='modal',aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title#newFolderModalLabel New Folder
+        .modal-body
+          .row
+            .form-horizontal
+              .form-group
+                label.col-sm-3.control-label(for='newfoldername') Folder Name 
+                .col-sm-5
+                  input.form-control#newfoldername(type='text')
+              .form-group
+                label.control-label.col-sm-3(for='newFolderDescription') Description 
+                .col-sm-5
+                  textarea#newFolderDescription.form-control(rows='6')
+        .modal-footer
+          button.btn.btn-default(type='button',data-dismiss='modal') Close
+          button.btn.btn-primary#btn_save_new_folder(type='button',data-dismiss='modal') Save

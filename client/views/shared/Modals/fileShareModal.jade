@@ -1,0 +1,24 @@
+template(name='fileShareModal')
+  .modal.fade#fileShareModal(tabindex='-1',role='dialog',aria-labelledby='fileShareModalLabel',aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button(type='button',class='close',data-dismiss='modal',aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title#fileShareModalLabel Share With
+        .modal-body
+          .row
+            .col-md-12
+              .form-group
+                label.control-label Receivers 
+                +recieverChooser id='shareToUsers' size='8' shareReceivers=shareReceivers
+              //- .form-group
+              //-   label.control-label(for='#share_title') Title
+              //-   input#share_title.form-control(type='text')
+              .form-group
+                label.control-label(for='#share_comments') Comments
+                //- textarea#share_comments.form-control(rows='6')
+                +simpleSummernote id='share_comments'
+        .modal-footer
+          button.btn.btn-default(type='button',data-dismiss='modal') Close
+          button.btn.btn-primary#btn_share_to_users(type='button',data-dismiss='modal') Share

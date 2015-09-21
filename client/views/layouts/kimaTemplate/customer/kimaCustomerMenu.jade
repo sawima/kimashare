@@ -1,0 +1,39 @@
+template(name='kimaCustomerMenu')
+  .site-operation-bar
+    .container-fluid
+      .row
+        ul.kima-nav
+          li(class="{{ isActiveRoute regex='myspace'}}")
+            a(href='{{pathFor "myspace"}}') 
+              i.entypo-home
+              | Home
+          //- li.dropdown.language-selector
+          //-   | Zone:  
+          //-   a.dropdown-toggle(href='#', data-toggle='dropdown', data-close-others='true')
+          //-     i.entypo-bucket
+          //-   ul.dropdown-menu.pull-right.list-unstyled
+          //-     li
+          //-       a.czone_choose_link(href='#')
+          //-         span item1
+          //-     li
+          //-       a.czone_choose_link(href='#')
+          //-         span item2
+          //-     li
+          //-       a.czone_choose_link(href='#')
+          //-         span item3
+          //-     li
+          //-       a.czone_choose_link(href='#')
+          //-         span item4
+          //- li
+          //-   a(href='#') User
+          //- li
+          //-   a(href='#') User
+
+          //- todo: if user in useradmin or systemadmin show the admin panel
+          //- {{#if isInRole 'editor,user'}} 
+          if isInRole 'systemadmin,useradmin'
+            //- li(class="{{ isActiveRoute regex='adminboard,CZoneAdmin,newCZone,editCZone,viewCZone,useradmin,quickAddUser,editUser'}}")
+            li(class="{{ isActiveRoute regex='adminboard'}}")
+              a(href='{{pathFor "adminboard"}}')
+                i.entypo-cog
+                | Admim Board

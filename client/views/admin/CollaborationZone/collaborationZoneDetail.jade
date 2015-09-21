@@ -1,0 +1,67 @@
+template(name='collaborationZoneDetail')
+  ol.breadcrumb.bc-3
+    li
+      a(href='/')
+        i.entypo-home
+        | Home
+    li
+      a(href="{{pathFor 'CZoneAdmin'}}") Collaboration Site
+    li.active
+      strong Site Information
+  .pad-container
+    .row
+      .col-sm-6
+        select.chosen-select#CZoneSelector(data-placeholder='Collaboration Zones')
+          option
+          each czones 
+            option(value='#{_id}') #{name}
+    h3 #{name}
+    p #{description}
+    if isPublic
+      .row
+        .col-sm-6
+          label
+            i.fa.fa-star
+            | Opened to all login user
+    if openToAll
+      label
+        i.fa.fa-star
+        | Opened to everyone
+    .row
+      .col-sm-4
+        .tile-block.tile-cyan
+          .tile-header Consumers
+          .tile-content
+            .margin-top-10
+              ul.list-unstyled#customersOfCZone
+                each consumers 
+                  li #{fullname}
+      .col-sm-4
+        .tile-block.tile-blue
+          .tile-header Contributors
+          .tile-content
+            .margin-top-10
+              ul.list-unstyled#internalsOfCZone
+                each contributors 
+                  li #{fullname}
+      .col-sm-4
+        .tile-block.tile-brown
+          .tile-header Coordinators
+          .tile-content
+            .margin-top-10
+              ul.list-unstyled#keyuserOfCZone
+                each coordinators 
+                  li #{fullname}
+    hr
+    a.btn.btn-primary(href="{{pathFor 'editCZone' czone_id=this._id}}")#edit_this_czone Edit 
+    button.btn.btn-danger(type='button',data-toggle='modal',data-target='#removeCZoneModal',title="Remove") Remove
+    
+  
+  .modal.fade#removeCZoneModal(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-body
+          h3 Are you sure to remove this Collaboration Site?
+        .modal-footer
+          button.btn.btn-primary#remove_this_czone(type='button',data-dismiss='modal',data-id='#{_id}') Yes
+          button.btn(type='button',data-dismiss='modal') Cancel
