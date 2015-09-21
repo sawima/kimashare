@@ -1,0 +1,44 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+iron:router
+mquandalle:jade
+coffeescript
+http
+stylus
+#natestrauser:font-awesome
+alanning:roles
+zimme:iron-router-active
+dburles:collection-helpers
+reywood:publish-composite
+momentjs:moment
+mrt:underscore-string-latest
+yasinuslu:blaze-meta
+aldeed:collection2
+sacha:spin
+stevezhu:lodash
+useraccounts:bootstrap
+accounts-password
+kimatech:upload-server
+kimatech:upload-jquery
+reactive-var
+reactive-dict
+email
+meteorhacks:npm
+npm-container
+msavin:mongol
+aldeed:tabular
+mizzao:autocomplete
+summernote:standalone
+
+numeral:numeral
+
+#tap:i18n
+jparker:crypto-base64
+chrismbeckett:toastr
+
+sergeyt:typeahead
