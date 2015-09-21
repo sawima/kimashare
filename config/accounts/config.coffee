@@ -5,7 +5,7 @@ AccountsTemplates.configureRoute 'forgotPwd',{layoutTemplate:'kimaPublicLayout'}
 AccountsTemplates.configureRoute 'resetPwd',{layoutTemplate:'kimaPublicLayout'}
 AccountsTemplates.configureRoute 'verifyEmail',{layoutTemplate:'kimaPublicLayout'}
 AccountsTemplates.configureRoute 'enrollAccount',{layoutTemplate:'kimaPublicLayout'}
-AccountsTemplates.configureRoute 'changePwd',{layoutTemplate:'kimaPublicLayout'}
+# AccountsTemplates.configureRoute 'changePwd',{layoutTemplate:'kimaPublicLayout'}
 
 
 mySubmitFunc=(err,state)->
@@ -18,7 +18,7 @@ mySubmitFunc=(err,state)->
 AccountsTemplates.configure
 	sendVerificationEmail:true
 	showForgotPasswordLink:true
-	enablePasswordChange:true
+	enablePasswordChange:false
 	# enforceEmailVerification:true
 	forbidClientAccountCreation: true
 	showForgotPasswordLink: true
