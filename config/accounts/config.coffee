@@ -18,7 +18,7 @@ mySubmitFunc=(err,state)->
 AccountsTemplates.configure
 	sendVerificationEmail:true
 	showForgotPasswordLink:true
-	enablePasswordChange:false
+	enablePasswordChange:true
 	# enforceEmailVerification:true
 	forbidClientAccountCreation: true
 	showForgotPasswordLink: true
